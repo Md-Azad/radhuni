@@ -4,6 +4,7 @@ import Banner from "./Banner";
 import FoodCategory from "./FoodCategory";
 import PhoneNum from "./PhoneNum";
 import PopularFood from "./PopularFood";
+import Featured from "./Featured";
 
 const Home = () => {
   return (
@@ -15,7 +16,9 @@ const Home = () => {
       <FoodCategory></FoodCategory>
       <Announcement></Announcement>
       <PopularFood></PopularFood>
+
       <PhoneNum></PhoneNum>
+      <Featured></Featured>
     </div>
   );
 };
