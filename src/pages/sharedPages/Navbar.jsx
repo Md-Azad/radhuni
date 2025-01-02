@@ -8,7 +8,9 @@ const Navbar = () => {
       </li>
 
       <li>
-        <a>Item 2</a>
+        <NavLink to="/menu" className="mx-4">
+          Our Menu
+        </NavLink>
       </li>
     </>
   );
