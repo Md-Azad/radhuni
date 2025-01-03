@@ -12,7 +12,7 @@ import slide5 from "../../assets/home/slide5.jpg";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 const FoodCategory = () => {
   return (
-    <>
+    <section className="ml-4 md:ml-0">
       <SectionTitle
         heading={"Order Online"}
         subHeading={"From 10am to 10pm"}
@@ -25,7 +25,7 @@ const FoodCategory = () => {
           clickable: true,
         }}
         modules={[FreeMode, Pagination]}
-        className="mySwiper"
+        className="mySwiper "
       >
         <SwiperSlide>
           <img src={slide1} alt="" />
@@ -62,7 +62,7 @@ const FoodCategory = () => {
           </h3>
         </SwiperSlide>
       </Swiper>
-    </>
+    </section>
   );
 };
 

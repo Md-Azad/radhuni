@@ -24,11 +24,11 @@ const Featured = () => {
         heading="From our menu"
         subHeading="check it out"
       ></SectionTitle>
-      <div className="md:flex justify-center items-center pb-20 pt-12 px-36 bg-slate-500 bg-opacity-50">
-        <div>
+      <div className="flex flex-col md:flex-row justify-center items-center pb-20 pt-4 md:pt-12  px-4 md:px-36 bg-slate-500 bg-opacity-50">
+        <div className="">
           <img src={featuredImg} alt="" />
         </div>
-        <div className="md:ml-10">
+        <div className=" text-center md:text-left mt-4 md:mt-0 md:ml-10">
           <h3>{`${
             months[d.getMonth()]
           } ${d.getDate()}, ${d.getFullYear()}`}</h3>

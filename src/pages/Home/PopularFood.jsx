@@ -18,7 +18,7 @@ const PopularFood = () => {
         heading="From Our Menu"
         subHeading="check it out"
       ></SectionTitle>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 space-y-4  mx-2 md:mx-0">
         {popularFood.map((food) => (
           <FoodCard key={food._id} food={food}></FoodCard>
         ))}
