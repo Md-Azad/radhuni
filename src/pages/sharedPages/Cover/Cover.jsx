@@ -12,13 +12,14 @@ const Cover = ({ coverImg, hight, title, subTitle }) => {
         className={`hero `}
         style={{
           height: `${window.innerWidth < 462 ? 300 : hight}px`,
-          //   backgroundImage: `url("${coverImg}")`,
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="w-2/3 hero-content text-neutral-content text-center bg-black bg-opacity-40 py-4 md:py-12 ">
           <div>
-            <h1 className="mb-5 text-2xl md:text-5xl font-bold">{title}</h1>
+            <h1 className="mb-5 text-2xl md:text-5xl font-bold uppercase">
+              {title}
+            </h1>
             <p className="mb-5">{subTitle}</p>
           </div>
         </div>
