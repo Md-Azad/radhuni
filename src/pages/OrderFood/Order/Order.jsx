@@ -1,5 +1,6 @@
 import orderCoverImg from "../../../assets/shop/banner2.jpg";
 import Cover from "../../sharedPages/Cover/Cover";
+import FoodTab from "./FoodTab";
 const Order = () => {
   return (
     <div>
@@ -9,6 +10,7 @@ const Order = () => {
         title="Our Foods"
         subTitle="Would You Like to Try A dish?"
       ></Cover>
+      <FoodTab></FoodTab>
     </div>
   );
 };
