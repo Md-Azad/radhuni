@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import FoodCard from "../../components/FoodCard/FoodCard";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import useMenu from "../../hooks/useMenu";
 
 const PopularFood = () => {
-  const [popularFood, setPopularFood] = useState([]);
-  useEffect(() => {
-    fetch("./menu.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const popular = data.filter((item) => item.category === "popular");
-        setPopularFood(popular);
-      });
-  }, []);
+  const [menu] = useMenu();
+  const popular = menu.filter((item) => item.category === "popular");
+  //   const [popularFood, setPopularFood] = useState([]);
+  //   useEffect(() => {
+  //     fetch("./menu.json")
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         const popular = data.filter((item) => item.category === "popular");
+  //         setPopularFood(popular);
+  //       });
+  //   }, []);
   return (
     <section className="my-8">
       <SectionTitle
@@ -19,7 +22,7 @@ const PopularFood = () => {
         subHeading="check it out"
       ></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 space-y-4  mx-2 md:mx-0">
-        {popularFood.map((food) => (
+        {popular.map((food) => (
           <FoodCard key={food._id} food={food}></FoodCard>
         ))}
       </div>

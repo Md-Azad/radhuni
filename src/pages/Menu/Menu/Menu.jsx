@@ -16,14 +16,6 @@ const Menu = () => {
         title="Our Menu"
         subTitle="Would You Like To Try A Dish?"
       ></Cover>
-      <PopularFood></PopularFood>
-      <Cover
-        coverImg={coverImg}
-        hight={600}
-        title="Our Menu"
-        subTitle="Would You Like To Try A Dish?"
-      ></Cover>
-      <PopularFood></PopularFood>
     </div>
   );
 };
