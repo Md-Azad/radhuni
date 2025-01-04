@@ -33,35 +33,35 @@ const Menu = () => {
         heading="today's Offer"
         subHeading="Don't Miss"
       ></SectionTitle>
-      <MenuCategory items={offered}></MenuCategory>
+      <MenuCategory items={offered} category={"salad"}></MenuCategory>
       <Cover
         coverImg={sessertImg}
         hight={600}
         title="dessert"
         subTitle="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
       ></Cover>
-      <MenuCategory items={dessert}></MenuCategory>
+      <MenuCategory items={dessert} category="dessert"></MenuCategory>
       <Cover
         coverImg={pizzImg}
         hight={600}
         title="Pizza"
         subTitle="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
       ></Cover>
-      <MenuCategory items={pizza}></MenuCategory>
+      <MenuCategory items={pizza} category="pizza"></MenuCategory>
       <Cover
         coverImg={saladImg}
         hight={600}
         title="Salad"
         subTitle="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
       ></Cover>
-      <MenuCategory items={salad}></MenuCategory>
+      <MenuCategory items={salad} category="salad"></MenuCategory>
       <Cover
         coverImg={soupImg}
         hight={600}
-        title="Salad"
+        title="soup"
         subTitle="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
       ></Cover>
-      <MenuCategory items={soup}></MenuCategory>
+      <MenuCategory items={soup} category="soup"></MenuCategory>
     </div>
   );
 };

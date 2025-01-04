@@ -3,9 +3,13 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useMenu from "../../../hooks/useMenu";
 import SingleFoodCard from "../../../components/SingleFoodCard";
+import { useParams } from "react-router-dom";
 
 const FoodTab = () => {
-  const [tabIndex, setTabIndex] = useState(0);
+  const foodList = ["salad", "soup", "pizza", "dessert", "drink"];
+  const { category } = useParams();
+  const initialIndex = foodList.indexOf(category);
+  const [tabIndex, setTabIndex] = useState(initialIndex);
   const [menu] = useMenu();
   const drinks = menu.filter((item) => item.category === "drinks");
   const pizzas = menu.filter((item) => item.category === "pizza");
