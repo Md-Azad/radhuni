@@ -28,6 +28,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/contact">Contact Us</NavLink>
       </li>
+      <li>
+        <NavLink to="/secret">Secret</NavLink>
+      </li>
     </>
   );
   return (
