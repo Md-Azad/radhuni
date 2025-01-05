@@ -1,15 +1,4 @@
-import { useEffect } from "react";
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-} from "react-simple-captcha";
-
 const Login = () => {
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
-
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -17,6 +6,7 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
   };
+
   return (
     <div className="hero bg-base-200 min-h-screen ">
       <div className="hero-content flex-col w-3/5  ">
@@ -54,20 +44,13 @@ const Login = () => {
                 </a>
               </label>
             </div>
-            <div className="form-control">
-              <label className="label">
-                <LoadCanvasTemplate />
-              </label>
-              <input
-                type="text"
-                name="captcha"
-                placeholder="Type the captcha above"
-                className="input input-bordered"
-                required
-              />
-            </div>
+
             <div className="form-control mt-6">
-              <input className="btn btn-primary" type="submit" value="Login" />
+              <input
+                className={`btn btn-primary `}
+                type="submit"
+                value="Login"
+              />
             </div>
           </form>
         </div>
