@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { MdShoppingCart } from "react-icons/md";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -66,6 +67,12 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navOption}</ul>
       </div>
       <div className="navbar-end">
+        <Link>
+          <button className="btn mr-2">
+            <MdShoppingCart className="text-xl" />
+            <div className="badge badge-secondary">+0</div>
+          </button>
+        </Link>
         {!user?.email ? (
           <Link to="/login" className="btn btn-success">
             Login
