@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -7,6 +7,7 @@ const SingleFoodCard = ({ item }) => {
   const { name, image, recipe, price, _id } = item;
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleAddToCart = (food) => {
     if (user && user.email) {
@@ -31,7 +32,7 @@ const SingleFoodCard = ({ item }) => {
         confirmButtonText: "Yes, Login!",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/login");
+          navigate("/login", { state: { from: location } });
         }
       });
     }
