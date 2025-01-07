@@ -1,15 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const SingleFoodCard = ({ item }) => {
-  const { name, image, recipe, price } = item;
+  const { name, image, recipe, price, _id } = item;
   const { user } = useAuth();
   const navigate = useNavigate();
 
   const handleAddToCart = (food) => {
     if (user && user.email) {
-      // TODO: send data to the database;
+      const cartItem = {
+        menuId: _id,
+        userEmail: user.email,
+        name,
+        image,
+        price,
+      };
+      axios.post("http://localhost:3000/carts", cartItem).then((res) => {
+        console.log(res.data);
+      });
     } else {
       Swal.fire({
         title: "You Are Not Logged In",
