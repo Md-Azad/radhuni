@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import SocialLogin from "../../../components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
@@ -94,6 +95,12 @@ const SignUp = () => {
               />
             </div>
           </form>
+          <div className="text-center">
+            <div className="divider divider-success">OR</div>
+
+            <SocialLogin></SocialLogin>
+          </div>
+          <div className="divider "></div>
           <p
             className="text-center mb-4
           "

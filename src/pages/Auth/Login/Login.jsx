@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import SocialLogin from "../../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
@@ -30,6 +31,12 @@ const Login = () => {
       <div className="hero-content flex-col w-3/5  ">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
+          <div className="text-center">
+            <div className="divider divider-success">With</div>
+
+            <SocialLogin></SocialLogin>
+          </div>
+          <div className="divider divider-success">OR</div>
         </div>
         <div className="card bg-base-100 w-full shadow-2xl ">
           <form onSubmit={handleLogin} className="card-body">
@@ -71,6 +78,7 @@ const Login = () => {
               />
             </div>
           </form>
+
           <p
             className="text-center mb-4
           "
