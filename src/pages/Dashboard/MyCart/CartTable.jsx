@@ -45,7 +45,7 @@ const CartTable = ({ item, index, refetch }) => {
       </td>
       <td>{name}</td>
       <td>${price}</td>
-      <th>
+      <th className="text-end">
         <button onClick={() => handleDelete(_id)} className="btn btn-ghost">
           <FaTrashAlt className="text-xl text-red-500"></FaTrashAlt>
         </button>

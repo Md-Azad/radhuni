@@ -1,14 +1,17 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
-    // const name = form.name.value;
+    const name = form.name.value;
     const email = form.email.value;
 
     const password = form.password.value;
@@ -16,7 +19,22 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         if (user?.email) {
-          navigate("/");
+          const userInfo = {
+            name,
+            email: user.email,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Account created Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
+          });
         }
       })
       .catch((err) => {

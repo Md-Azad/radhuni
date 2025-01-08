@@ -6,7 +6,7 @@ const MyCart = () => {
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
   return (
-    <section className="border-2 border-red-300">
+    <section className="">
       <div className="flex justify-between">
         <h2 className="text-4xl font-bold">Items: {cart.length}</h2>
         <h2 className="text-4xl font-bold">Total Price: ${totalPrice}</h2>
@@ -21,7 +21,7 @@ const MyCart = () => {
               <th>Image</th>
               <th>Name</th>
               <th>Price</th>
-              <th>Action</th>
+              <th className="text-end">Action</th>
             </tr>
           </thead>
           <tbody>

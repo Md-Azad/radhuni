@@ -3,8 +3,10 @@ import { IoBagAddSharp } from "react-icons/io5";
 import { MdOutlineMenuBook } from "react-icons/md";
 import { VscCodeReview } from "react-icons/vsc";
 import { NavLink, Outlet } from "react-router-dom";
+import useCart from "../../../hooks/useCart";
 
 const Dashboard = () => {
+  const [cart] = useCart();
   return (
     <section className="flex">
       <div className="w-64 min-h-screen bg-orange-300">
@@ -34,7 +36,7 @@ const Dashboard = () => {
               to="/dashboard/myCart"
               className="flex items-center gap-2 text-2xl"
             >
-              <FaCartPlus></FaCartPlus> My Cart
+              <FaCartPlus></FaCartPlus> My Cart ({cart.length})
             </NavLink>
           </li>
           <li>
