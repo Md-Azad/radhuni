@@ -2,9 +2,9 @@ import useCart from "../../../hooks/useCart";
 import CartTable from "./CartTable";
 
 const MyCart = () => {
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
-  console.log(totalPrice);
+
   return (
     <section className="border-2 border-red-300">
       <div className="flex justify-between">
@@ -26,7 +26,12 @@ const MyCart = () => {
           </thead>
           <tbody>
             {cart.map((item, index) => (
-              <CartTable key={item._id} item={item} index={index}></CartTable>
+              <CartTable
+                key={item._id}
+                item={item}
+                index={index}
+                refetch={refetch}
+              ></CartTable>
             ))}
           </tbody>
         </table>
