@@ -1,20 +1,23 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
+    // const name = form.name.value;
     const email = form.email.value;
 
     const password = form.password.value;
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        if (user?.email) {
+          navigate("/");
+        }
       })
       .catch((err) => {
         console.log(err.message);
@@ -24,7 +27,7 @@ const SignUp = () => {
     <div className="hero bg-base-200 min-h-screen ">
       <div className="hero-content flex-col w-3/5  ">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+          <h1 className="text-5xl font-bold">Sign Up now!</h1>
         </div>
         <div className="card bg-base-100 w-full shadow-2xl ">
           <form onSubmit={handleSignUp} className="card-body">
@@ -69,7 +72,7 @@ const SignUp = () => {
               <input
                 className={`btn btn-primary `}
                 type="submit"
-                value="Login"
+                value="SignUp"
               />
             </div>
           </form>

@@ -6,7 +6,7 @@ import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   const [cart] = useCart();
-  console.log(cart);
+
   const { user, logOut } = useContext(AuthContext);
   const handleSignOut = () => {
     logOut()
@@ -73,7 +73,9 @@ const Navbar = () => {
         <Link>
           <button className="btn mr-2">
             <MdShoppingCart className="text-xl" />
-            <div className="badge badge-secondary">+${cart.length}</div>
+            <div className="badge badge-secondary">
+              +{user?.email ? cart.length : "0"}
+            </div>
           </button>
         </Link>
         {!user?.email ? (
