@@ -70,14 +70,15 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navOption}</ul>
       </div>
       <div className="navbar-end">
-        <Link>
-          <button className="btn mr-2">
+        <button className="btn mr-2">
+          <Link to="/dashboard/myCart">
             <MdShoppingCart className="text-xl" />
             <div className="badge badge-secondary">
               +{user?.email ? cart.length : "0"}
             </div>
-          </button>
-        </Link>
+          </Link>
+        </button>
+
         {!user?.email ? (
           <Link to="/login" className="btn btn-success">
             Login
