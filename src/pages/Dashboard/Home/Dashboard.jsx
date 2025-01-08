@@ -1,4 +1,6 @@
 import { FaCalendar, FaCartPlus, FaHome, FaList } from "react-icons/fa";
+import { IoBagAddSharp } from "react-icons/io5";
+import { MdOutlineMenuBook } from "react-icons/md";
 import { VscCodeReview } from "react-icons/vsc";
 import { NavLink, Outlet } from "react-router-dom";
 
@@ -52,9 +54,31 @@ const Dashboard = () => {
               <FaList></FaList> My Bookings
             </NavLink>
           </li>
+          <div className="divider divider-info"></div>
+
+          <li>
+            <NavLink to="/" className="flex items-center gap-2 text-2xl">
+              <FaHome></FaHome> Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/menu" className="flex items-center gap-2 text-2xl">
+              <MdOutlineMenuBook />
+              Menu
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/Order/salad"
+              className="flex items-center gap-2 text-2xl"
+            >
+              <IoBagAddSharp />
+              Order
+            </NavLink>
+          </li>
         </ul>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 p-8">
         <Outlet></Outlet>
       </div>
     </section>

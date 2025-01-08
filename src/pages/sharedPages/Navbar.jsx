@@ -72,9 +72,9 @@ const Navbar = () => {
       <div className="navbar-end">
         <button className="btn mr-2">
           <Link to="/dashboard/myCart">
-            <MdShoppingCart className="text-xl" />
             <div className="badge badge-secondary">
-              +{user?.email ? cart.length : "0"}
+              <MdShoppingCart className="text-xl" />+
+              {user?.email ? cart.length : "0"}
             </div>
           </Link>
         </button>
