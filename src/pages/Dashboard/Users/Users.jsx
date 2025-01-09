@@ -13,6 +13,7 @@ const Users = () => {
       return res.data;
     },
   });
+
   return (
     <div>
       <SectionTitle
