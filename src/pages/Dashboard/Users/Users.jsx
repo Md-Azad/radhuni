@@ -28,6 +28,7 @@ const Users = () => {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
+              <th className="text-center">Role</th>
               <th>Action</th>
             </tr>
           </thead>
