@@ -6,7 +6,7 @@ import UserTable from "./UserTable";
 
 const Users = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
@@ -34,7 +34,12 @@ const Users = () => {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <UserTable key={user._id} user={user} index={index}></UserTable>
+              <UserTable
+                key={user._id}
+                user={user}
+                index={index}
+                refetch={refetch}
+              ></UserTable>
             ))}
           </tbody>
         </table>

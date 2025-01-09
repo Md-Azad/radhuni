@@ -2,7 +2,7 @@ import { FaTrashAlt, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const UserTable = ({ user, index }) => {
+const UserTable = ({ user, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const handleDeleteUser = (id) => {
     Swal.fire({
@@ -19,6 +19,7 @@ const UserTable = ({ user, index }) => {
           .delete(`/users/${id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
+              refetch();
               Swal.fire({
                 title: "Deleted!",
                 text: `${user?.name} has been deleted.`,
