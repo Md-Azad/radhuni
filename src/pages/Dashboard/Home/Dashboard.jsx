@@ -3,7 +3,6 @@ import {
   FaCartPlus,
   FaHome,
   FaList,
-  FaUserAlt,
   FaUsers,
   FaUtensils,
 } from "react-icons/fa";
@@ -13,12 +12,13 @@ import { VscCodeReview } from "react-icons/vsc";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../../../hooks/useCart";
 import { FaBook } from "react-icons/fa6";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
 
-  //   TODO: GET isAdmin value from database;
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  console.log(isAdmin);
   return (
     <section className="flex">
       <div className="w-64 min-h-screen bg-orange-300">
