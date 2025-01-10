@@ -4,7 +4,6 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const UserTable = ({ user, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
-  console.log(user);
 
   const handleMakeAdmin = (id) => {
     console.log(id);
