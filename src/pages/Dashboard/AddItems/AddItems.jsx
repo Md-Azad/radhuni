@@ -1,15 +1,17 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const apiKey = import.meta.env.VITE_Imagebb_api;
 
 const AddItems = () => {
   const { register, handleSubmit } = useForm();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const onSubmit = async (data) => {
-    console.log(data.image[0].name);
     const image = { image: data.image[0] };
     const res = await axiosPublic.post(
       `https://api.imgbb.com/1/upload?key=${apiKey}`,
@@ -25,10 +27,18 @@ const AddItems = () => {
         category: data.category.toLowerCase(),
         recipe: data.recipe,
       };
-      axiosPublic
+      axiosSecure
         .post("/menu", menuItem)
         .then((res) => {
-          console.log(res.data);
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your Item has been saved",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
         })
         .catch((err) => {
           console.log(err.message);
