@@ -48,7 +48,7 @@ const AddItems = () => {
   return (
     <div>
       <SectionTitle
-        heading="Update Item"
+        heading="Add an Item"
         subHeading="Any Changes"
       ></SectionTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
