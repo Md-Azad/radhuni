@@ -6,7 +6,7 @@ const AdminRoute = ({ children }) => {
   const [isAdmin, isPending] = useAdmin();
   const { user, loading } = useAuth();
 
-  if (loading && isPending) {
+  if (loading || isPending) {
     return (
       <>
         <span className="loading loading-ball loading-xs"></span>
@@ -16,7 +16,9 @@ const AdminRoute = ({ children }) => {
       </>
     );
   }
+
   if (user?.email && isAdmin) {
+    console.log("i have admin and user.");
     return children;
   }
 

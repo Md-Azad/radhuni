@@ -29,10 +29,12 @@ const AuthProvider = ({ children }) => {
   };
 
   const googleLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
 
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
