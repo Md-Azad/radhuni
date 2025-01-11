@@ -1,9 +1,40 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+
+const apiKey = import.meta.env.VITE_Imagebb_api;
 
 const AddItems = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const axiosPublic = useAxiosPublic();
+
+  const onSubmit = async (data) => {
+    console.log(data.image[0].name);
+    const image = { image: data.image[0] };
+    const res = await axiosPublic.post(
+      `https://api.imgbb.com/1/upload?key=${apiKey}`,
+      image,
+      { headers: { "Content-Type": "multipart/form-data" } }
+    );
+
+    if (res.data.success) {
+      const menuItem = {
+        name: data.name,
+        price: data.price,
+        image: res.data.data.display_url,
+        category: data.category.toLowerCase(),
+        recipe: data.recipe,
+      };
+      axiosPublic
+        .post("/menu", menuItem)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+  };
   return (
     <div>
       <SectionTitle
@@ -11,7 +42,7 @@ const AddItems = () => {
         subHeading="Any Changes"
       ></SectionTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label className="form-control w-full max-w-xs">
+        <label className="form-control w-full ">
           <div className="label">
             <span className="label-text">Recipe Name*</span>
           </div>
@@ -19,15 +50,19 @@ const AddItems = () => {
             {...register("name")}
             type="text"
             placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full "
           />
         </label>
-        <div>
-          <label className="form-control w-full max-w-xs">
+        <div className="flex gap-6">
+          <label className="form-control w-full ">
             <div className="label">
               <span className="label-text">Category</span>
             </div>
-            <select defaultValue="default" className="select select-bordered">
+            <select
+              {...register("category")}
+              defaultValue="default"
+              className="select select-bordered"
+            >
               <option disabled value="default">
                 Select Category
               </option>
@@ -38,7 +73,7 @@ const AddItems = () => {
               <option>Drinks</option>
             </select>
           </label>
-          <label className="form-control w-full max-w-xs">
+          <label className="form-control w-full ">
             <div className="label">
               <span className="label-text">Price*</span>
             </div>
@@ -46,16 +81,33 @@ const AddItems = () => {
               {...register("price")}
               type="number"
               placeholder="Type here"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full "
             />
           </label>
         </div>
-        <select {...register("gender")}>
-          <option value="female">female</option>
-          <option value="male">male</option>
-          <option value="other">other</option>
-        </select>
-        <input type="submit" />
+        <label className="form-control">
+          <div className="label">
+            <span className="label-text">Your bio</span>
+          </div>
+          <textarea
+            {...register("recipe")}
+            className="textarea textarea-bordered h-24"
+            placeholder="Bio"
+          ></textarea>
+        </label>
+        <div className="mt-4">
+          <input
+            type="file"
+            {...register("image")}
+            className="file-input file-input-bordered w-full max-w-xs"
+          />
+        </div>
+
+        <div className="mt-4">
+          <button className="btn w-full bg-purple-600 text-white">
+            Update
+          </button>
+        </div>
       </form>
     </div>
   );

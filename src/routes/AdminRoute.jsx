@@ -18,7 +18,6 @@ const AdminRoute = ({ children }) => {
   }
 
   if (user?.email && isAdmin) {
-    console.log("i have admin and user.");
     return children;
   }
 
