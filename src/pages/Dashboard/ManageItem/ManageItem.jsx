@@ -23,6 +23,7 @@ const ManageItem = () => {
         axiosSecure
           .delete(`/menu/${id}`)
           .then((res) => {
+            console.log(res.data);
             if (res.data.deletedCount > 0) {
               refetch();
               Swal.fire({
@@ -46,6 +47,7 @@ const ManageItem = () => {
       <SectionTitle heading="Manage your Items" subHeading="Any Changes?">
         {" "}
       </SectionTitle>
+
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

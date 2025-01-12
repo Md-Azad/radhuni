@@ -4,11 +4,12 @@ import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 import { useEffect, useState } from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const UpdateItem = () => {
-  const { register, handleSubmit } = useForm();
   const axiosPublic = useAxiosPublic();
   const [item, setItem] = useState([]);
+  const axiosSecure = useAxiosSecure();
   const id = useParams();
 
   useEffect(() => {
@@ -20,11 +21,42 @@ const UpdateItem = () => {
       .catch((err) => {
         console.log(err.message);
       });
-  }, [id]);
+  }, [id.id]);
+
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: {
+      name: item.name,
+      category: item.category,
+      price: item.price,
+      recipe: item.recipe,
+    },
+  });
+
+  useEffect(() => {
+    reset({
+      name: item.name,
+      category: item.category,
+      price: item.price,
+      recipe: item.recipe,
+    });
+  }, [item, reset]);
 
   const onSubmit = async (data) => {
-    const res = axiosPublic.get(`/menu/${id}`);
-    console.log(res.data);
+    const updatedItem = {
+      name: data.name,
+      category: data.category,
+      price: data.price,
+      recipe: data.recipe,
+    };
+    console.log(updatedItem);
+    axiosSecure
+      .patch(`/menu/${id.id}`, updatedItem)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
   return (
     <div>
@@ -45,6 +77,7 @@ const UpdateItem = () => {
             className="input input-bordered w-full "
           />
         </label>
+
         <div className="flex gap-6">
           <label className="form-control w-full ">
             <div className="label">
@@ -55,8 +88,8 @@ const UpdateItem = () => {
               defaultValue={item.category}
               className="select select-bordered"
             >
-              <option disabled value="">
-                Select Category
+              <option disabled value={item.category}>
+                {item.category}
               </option>
               <option>Salad</option>
               <option>Pizza</option>
@@ -89,13 +122,6 @@ const UpdateItem = () => {
             placeholder="Recipe"
           ></textarea>
         </label>
-        <div className="mt-4">
-          <input
-            type="file"
-            {...register("image")}
-            className="file-input file-input-bordered w-full max-w-xs"
-          />
-        </div>
 
         <div className="mt-4">
           <button className="btn w-full bg-purple-600 text-white">
